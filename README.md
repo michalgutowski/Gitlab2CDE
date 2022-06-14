@@ -1,12 +1,12 @@
 # Multi Cloud/Hybrid Cloud CI/CD Pipelines with CDE, Spark and GitLab 
 
 
-### Summary
+## Summary
 
 This tutorial demonstrates how you can use GitLab in conjunction with the Cloudera Data Engineering Service to meet Multi-cloud and Hybrid-cloud use cases. 
 
 
-### Prerequisites
+## Prerequisites
 
 To complete the tutorial, you will need the following:
 
@@ -15,9 +15,9 @@ To complete the tutorial, you will need the following:
 * Some familiarity with PySpark and Shell Scripting, although no code changes are required
 
 
-### Execute and Monitor a Spark Job via the CDE API in GitLab CI
+## Execute and Monitor a Spark Job via the CDE API in GitLab CI
 
-#### Step 1: Creating a GitLab project 
+### Step 1: Creating a GitLab project 
 
 Once you have signed up to a GitLab Account, log into through the main page.
 
@@ -58,7 +58,7 @@ Finally, examine the output. Notice the bash commands were executed (‘echo “
 ![alt text](img/gitlab2cde_6.png)
 
 
-#### Step 2: Creating GitLab environment variables for CDE API use
+### Step 2: Creating GitLab environment variables for CDE API use
 
 Now that you have a basic understanding of GitLab CI Jobs and Pipelines, you can move on to using this tool to interact with the CDE Service. 
 
@@ -129,7 +129,7 @@ Your Variables Section should look something like this when you’re done.
 You are now ready to finally create a GitLab CI Pipeline leveraging the CDE API. 
 
 
-#### Step 3: Creating GitLab environment variables for CDE API use
+### Step 3: Creating GitLab environment variables for CDE API use
 
 ##### Committing and launching your first pipeline
 
@@ -320,7 +320,7 @@ Finally, also notice that the response is populated for you. This is a great way
 ![alt text](img/gitlab2cde_35.png)
 
 
-### Conclusions
+## Conclusions
 
 This tutorial demonstrated how to execute Spark pipelines across different CDE Virtual Clusters. This also opens up possibilities for complex workflows
 
