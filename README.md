@@ -241,7 +241,7 @@ monitor_cde_job:
    - apk add jq
  script:
    - 'CDE_TOKEN=$(curl -u "${CDE_CREDENTIALS}" "${CDE_SVC_URL}/gateway/authtkn/knoxtoken/api/v1/token" | jq -r ".access_token")'
-   - 'JOB_ID=$(curl -H "Authorization: Bearer ${CDE_TOKEN}" -X GET "${CDE_JOB_URL}/job-runs?filter=job%5Beq%gitlab2cde_job&limit=20&offset=0&orderby=ID&orderasc=true" | jq ".runs[0].id")'
+   - 'JOB_ID=$(curl -H "Authorization: Bearer ${CDE_TOKEN}" -X GET "${CDE_JOB_URL}/job-runs?filter=job%5Beq%5Dgitlab2cde_job&limit=20&offset=0&orderby=ID&orderasc=false" | jq ".runs[0].id")'
    - 'curl -H "Authorization: Bearer ${CDE_TOKEN}" -X GET "${CDE_JOB_URL}/job-runs/${JOB_ID}/logs?type=driver%2Fstdout"'
    - 'mkdir cde_logs'
    - 'curl -H "Authorization: Bearer ${CDE_TOKEN}" -X GET "${CDE_JOB_URL}/job-runs/${JOB_ID}/logs?type=driver%2Fstdout" > cde_logs/logs.txt'
