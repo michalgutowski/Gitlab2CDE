@@ -141,10 +141,9 @@ stages:          # List of stages for jobs, and their order of execution
  
 create_cde_resource:
  stage: deploy
- image: docker:stable
+ image: oraclelinux:8-slim
  before_script:
-   - apk add --update curl && rm -rf /var/cache/apk/*
-   - apk add jq
+   - microdnf install -y jq
  script:
    - 'CDE_TOKEN=$(curl -u "${CDE_CREDENTIALS}" "${CDE_SVC_URL}/gateway/authtkn/knoxtoken/api/v1/token" | jq -r ".access_token")'
    - 'curl -H "Authorization: Bearer ${CDE_TOKEN}" -X POST "${CDE_JOB_URL}/resources" -H "Content-Type: application/json" -d "{ \"name\": \"gitlab2cde_resource_test\"}"'
@@ -204,10 +203,9 @@ stages:          # List of stages for jobs, and their order of execution
  
 create_cde_job:
  stage: deploy
- image: docker:stable
+ image: oraclelinux:8-slim
  before_script:
-   - apk add --update curl && rm -rf /var/cache/apk/*
-   - apk add jq
+   - microdnf install -y jq
  script:
    - 'CDE_TOKEN=$(curl -u "${CDE_CREDENTIALS}" "${CDE_SVC_URL}/gateway/authtkn/knoxtoken/api/v1/token" | jq -r ".access_token")'
    - 'curl -H "Authorization: Bearer ${CDE_TOKEN}" -X POST "${CDE_JOB_URL}/resources" -H "Content-Type: application/json" -d "{ \"name\": \"gitlab2cde_resource\"}"'
@@ -224,10 +222,9 @@ create_cde_job:
  
 run_cde_job:
  stage: deploy
- image: docker:stable
+ image: oraclelinux:8-slim
  before_script:
-   - apk add --update curl && rm -rf /var/cache/apk/*
-   - apk add jq
+   - microdnf install -y jq
  script:
    - 'CDE_TOKEN=$(curl -u "${CDE_CREDENTIALS}" "${CDE_SVC_URL}/gateway/authtkn/knoxtoken/api/v1/token" | jq -r ".access_token")'
    - 'curl -H "Authorization: Bearer ${CDE_TOKEN}" -X POST "${CDE_JOB_URL}/jobs/gitlab2cde_job/run"'
@@ -235,10 +232,9 @@ run_cde_job:
  
 monitor_cde_job:
  stage: deploy
- image: docker:stable
+ image: oraclelinux:8-slim
  before_script:
-   - apk add --update curl && rm -rf /var/cache/apk/*
-   - apk add jq
+   - microdnf install -y jq
  script:
    - 'CDE_TOKEN=$(curl -u "${CDE_CREDENTIALS}" "${CDE_SVC_URL}/gateway/authtkn/knoxtoken/api/v1/token" | jq -r ".access_token")'
    - 'JOB_ID=$(curl -H "Authorization: Bearer ${CDE_TOKEN}" -X GET "${CDE_JOB_URL}/job-runs?filter=job%5Beq%5Dgitlab2cde_job&limit=20&offset=0&orderby=ID&orderasc=false" | jq ".runs[0].id")'
